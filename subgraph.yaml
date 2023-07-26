@@ -1,0 +1,259 @@
+specVersion: 0.0.3
+description: Bao Markets Synthetics Platform
+repository: https://github.com/baofinance/bao-markets-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: bdbaoETH
+    network: mainnet
+    source:
+      address: "0xe853e5c1edf8c51e81bae81d742dd861df596de7"
+      abi: CToken
+      startBlock: 14000000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/ctoken.ts
+      entities:
+        - User
+        - Market
+        - CTokenInfo
+      abis:
+        - name: CToken
+          file: ./abis/ctoken.json
+        - name: PriceOracle
+          file: ./abis/priceOracle.json
+        - name: PriceOracle2
+          file: ./abis/priceOracle2.json
+        - name: ERC20
+          file: ./abis/erc20.json
+      eventHandlers:
+       #- event: Mint(address,uint256,uint256)
+       #  handler: handleMint
+       #- event: Redeem(address,uint256,uint256)
+       #  handler: handleRedeem
+        - event: Borrow(address,uint256,uint256,uint256)
+          handler: handleBorrow
+        - event: RepayBorrow(address,address,uint256,uint256,uint256)
+          handler: handleRepayBorrow
+        - event: LiquidateBorrow(address,address,uint256,address,uint256)
+          handler: handleLiquidateBorrow
+        - event: AccrueInterest(uint256,uint256,uint256)
+          handler: handleAccrueInterest
+        - event: NewReserveFactor(uint256,uint256)
+          handler: handleNewReserveFactor
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: NewMarketInterestRateModel(address,address)
+          handler: handleNewMarketInterestRateModel
+  - kind: ethereum/contract
+    name: bdbETH
+    network: mainnet
+    source:
+      address: "0xf7548a6e9daf2e4689cedd8a08189d0d6f3ee91b"
+      abi: CToken
+      startBlock: 14000000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/ctoken.ts
+      entities:
+        - User
+        - Market
+        - CTokenInfo
+      abis:
+        - name: CToken
+          file: ./abis/ctoken.json
+        - name: PriceOracle
+          file: ./abis/priceOracle.json
+        - name: PriceOracle2
+          file: ./abis/priceOracle2.json
+        - name: ERC20
+          file: ./abis/erc20.json
+      eventHandlers:
+       #- event: Mint(address,uint256,uint256)
+       #  handler: handleMint
+       #- event: Redeem(address,uint256,uint256)
+       #  handler: handleRedeem
+        - event: Borrow(address,uint256,uint256,uint256)
+          handler: handleBorrow
+        - event: RepayBorrow(address,address,uint256,uint256,uint256)
+          handler: handleRepayBorrow
+        - event: LiquidateBorrow(address,address,uint256,address,uint256)
+          handler: handleLiquidateBorrow
+        - event: AccrueInterest(uint256,uint256,uint256)
+          handler: handleAccrueInterest
+        - event: NewReserveFactor(uint256,uint256)
+          handler: handleNewReserveFactor
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: NewMarketInterestRateModel(address,address)
+          handler: handleNewMarketInterestRateModel
+  - kind: ethereum/contract
+    name: bdSTBL
+    network: mainnet
+    source:
+      address: "0x937982c5ea62bd6765bd5387e5c6b45e24cb4ff6"
+      abi: CToken
+      startBlock: 14000000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/ctoken.ts
+      entities:
+        - User
+        - Market
+        - CTokenInfo
+      abis:
+        - name: CToken
+          file: ./abis/ctoken.json
+        - name: PriceOracle
+          file: ./abis/priceOracle.json
+        - name: PriceOracle2
+          file: ./abis/priceOracle2.json
+        - name: ERC20
+          file: ./abis/erc20.json
+      eventHandlers:
+       #- event: Mint(address,uint256,uint256)
+       #  handler: handleMint
+       #- event: Redeem(address,uint256,uint256)
+       #  handler: handleRedeem
+        - event: Borrow(address,uint256,uint256,uint256)
+          handler: handleBorrow
+        - event: RepayBorrow(address,address,uint256,uint256,uint256)
+          handler: handleRepayBorrow
+        - event: LiquidateBorrow(address,address,uint256,address,uint256)
+          handler: handleLiquidateBorrow
+        - event: AccrueInterest(uint256,uint256,uint256)
+          handler: handleAccrueInterest
+        - event: NewReserveFactor(uint256,uint256)
+          handler: handleNewReserveFactor
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: NewMarketInterestRateModel(address,address)
+          handler: handleNewMarketInterestRateModel          
+  - kind: ethereum/contract
+    name: bdSTBLArchived
+    network: mainnet
+    source:
+      address: "0xb0f8fe96b4880adbdede0ddf446bd1e7ef122c4e"
+      abi: CToken
+      startBlock: 14000000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/ctoken.ts
+      entities:
+        - User
+        - Market
+        - CTokenInfo
+      abis:
+        - name: CToken
+          file: ./abis/ctoken.json
+        - name: PriceOracle
+          file: ./abis/priceOracle.json
+        - name: PriceOracle2
+          file: ./abis/priceOracle2.json
+        - name: ERC20
+          file: ./abis/erc20.json
+      eventHandlers:
+       #- event: Mint(address,uint256,uint256)
+       #  handler: handleMint
+       #- event: Redeem(address,uint256,uint256)
+       #  handler: handleRedeem
+        - event: Borrow(address,uint256,uint256,uint256)
+          handler: handleBorrow
+        - event: RepayBorrow(address,address,uint256,uint256,uint256)
+          handler: handleRepayBorrow
+        - event: LiquidateBorrow(address,address,uint256,address,uint256)
+          handler: handleLiquidateBorrow
+        - event: AccrueInterest(uint256,uint256,uint256)
+          handler: handleAccrueInterest
+        - event: NewReserveFactor(uint256,uint256)
+          handler: handleNewReserveFactor
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: NewMarketInterestRateModel(address,address)
+          handler: handleNewMarketInterestRateModel          
+  - kind: ethereum/contract
+    name: bdETH
+    network: mainnet
+    source:
+      address: "0x104079a87CE46fe2Cf27b811f6b406b69F6872B3"
+      abi: CToken
+      startBlock: 14000000
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/ctoken.ts
+      entities:
+        - User
+        - Market
+        - CTokenInfo
+      abis:
+        - name: CToken
+          file: ./abis/ctoken.json
+        - name: PriceOracle
+          file: ./abis/priceOracle.json
+        - name: PriceOracle2
+          file: ./abis/priceOracle2.json
+      eventHandlers:
+       #- event: Mint(address,uint256,uint256)
+       #  handler: handleMint
+       #- event: Redeem(address,uint256,uint256)
+       #  handler: handleRedeem
+        - event: Borrow(address,uint256,uint256,uint256)
+          handler: handleBorrow
+        - event: RepayBorrow(address,address,uint256,uint256,uint256)
+          handler: handleRepayBorrow
+        - event: LiquidateBorrow(address,address,uint256,address,uint256)
+          handler: handleLiquidateBorrow
+        - event: AccrueInterest(uint256,uint256,uint256)
+          handler: handleAccrueInterest
+        - event: NewReserveFactor(uint256,uint256)
+          handler: handleNewReserveFactor
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: NewMarketInterestRateModel(address,address)
+          handler: handleNewMarketInterestRateModel        
+  - kind: ethereum/contract
+    name: Comptroller
+    network: mainnet
+    source:
+      address: "0x8e8c327ad3fa97092cdaba70efcf82dac3081fa1"
+      abi: Comptroller
+      startBlock: 11873394
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      file: ./src/mappings/comptroller.ts
+      entities:
+        - Comptroller
+        - Market
+      abis:
+        - name: Comptroller
+          file: ./abis/comptroller.json
+        - name: PriceOracle
+          file: ./abis/priceOracle.json
+      eventHandlers:
+        - event: MarketEntered(address,address)
+          handler: handleMarketEntered
+        - event: MarketExited(address,address)
+          handler: handleMarketExited
+        - event: NewCloseFactor(uint256,uint256)
+          handler: handleNewCloseFactor
+        - event: NewCollateralFactor(address,uint256,uint256)
+          handler: handleNewCollateralFactor
+        - event: NewLiquidationIncentive(uint256,uint256)
+          handler: handleNewLiquidationIncentive
+        - event: NewMaxAssets(uint256,uint256)
+          handler: handleNewMaxAssets
+        - event: NewPriceOracle(address,address)
+          handler: handleNewPriceOracle
